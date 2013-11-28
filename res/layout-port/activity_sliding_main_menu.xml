@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ServicesActivity" >
+
+    <RelativeLayout
+        android:background="@color/dark_blue"
+        android:id="@+id/rlvContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.slidinglayer.SlidingLayer
+        xmlns:slidingLayer="http://schemas.android.com/apk/res/com.slidinglayersample"
+        android:id="@+id/slidingLayer1"
+        android:layout_width="@dimen/sliding_menu_width"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:layout_width="@dimen/sliding_menu_width"
+                android:layout_height="wrap_content"
+                android:src="@drawable/androidback" />
+
+            <FrameLayout
+                android:layout_width="@dimen/sliding_menu_width"
+                android:layout_height="wrap_content" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <RelativeLayout
+                        android:id="@+id/rtlLayout1"
+                        style="@style/AppMenuItemBack"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:onClick="click"
+                        android:paddingBottom="0dp"
+                        android:paddingLeft="4dp"
+                        android:paddingRight="0dp"
+                        android:paddingTop="0dp" >
+
+                        <ImageView
+                            android:id="@+id/imvItemIcon1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_item_db" />
+
+                        <TextView
+                            android:id="@+id/txvItemDesc1"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/imvItemIcon1"
+                            android:text="Uso de BD"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textColor="@color/selected_item" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" >
+
+                    <LinearLayout
+                        android:id="@+id/lnlSelected1"
+                        android:layout_width="4dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/selected_item"
+                        android:orientation="horizontal" />
+                </LinearLayout>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="@dimen/sliding_menu_width"
+                android:layout_height="wrap_content" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <RelativeLayout
+                        android:id="@+id/rtlLayout2"
+                        style="@style/AppMenuItemBack"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:onClick="click"
+                        android:paddingBottom="0dp"
+                        android:paddingLeft="4dp"
+                        android:paddingRight="0dp"
+                        android:paddingTop="0dp" >
+
+                        <ImageView
+                            android:id="@+id/imvItemIcon2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_item_internet" />
+
+                        <TextView
+                            android:id="@+id/txvItemDesc"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/imvItemIcon2"
+                            android:text="Internet"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textColor="@color/selected_item" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" >
+
+                    <LinearLayout
+                        android:id="@+id/lnlSelected2"
+                        android:layout_width="4dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/selected_item"
+                        android:visibility="invisible"
+                        android:orientation="horizontal" />
+                </LinearLayout>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="@dimen/sliding_menu_width"
+                android:layout_height="wrap_content" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <RelativeLayout
+                        android:id="@+id/rtlLayout3"
+                        style="@style/AppMenuItemBack"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:onClick="click"
+                        android:paddingBottom="0dp"
+                        android:paddingLeft="4dp"
+                        android:paddingRight="0dp"
+                        android:paddingTop="0dp" >
+
+                        <ImageView
+                            android:id="@+id/imvItemIcon3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_item_on" />
+
+                        <TextView
+                            android:id="@+id/txvItemDesc3"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/imvItemIcon3"
+                            android:text="Registros"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textColor="@color/selected_item" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" >
+
+                    <LinearLayout
+                        android:id="@+id/lnlSelected3"
+                        android:layout_width="4dp"
+                        android:visibility="invisible"
+                        android:layout_height="match_parent"
+                        android:background="@color/selected_item"
+                        android:orientation="horizontal" />
+                </LinearLayout>
+            </FrameLayout>
+
+            <LinearLayout
+                style="@style/AppMenuItemBack"
+                android:layout_width="@dimen/sliding_menu_width"
+                android:layout_height="fill_parent" />
+        </LinearLayout>
+    </com.slidinglayer.SlidingLayer>
+
+</RelativeLayout>
