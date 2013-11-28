@@ -3,12 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
+
     <Button 
-        android:id="@+id/btn"
-        android:text="DB Use"
+        android:id="@+id/btnPri"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"/>
+        android:text="DB use"/>
 
 </LinearLayout>

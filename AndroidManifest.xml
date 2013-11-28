@@ -25,6 +25,7 @@
             </intent-filter>
         </activity>
         <activity
+            android:theme="@android:style/Theme.Light.NoTitleBar"
             android:name="com.example.pruebakeneth.ServicesActivity"
             android:label="@string/services_label" >
         </activity>
