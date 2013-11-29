@@ -1,10 +1,8 @@
 package com.example.pruebakeneth;
 
+import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,10 +18,6 @@ public class ServicesActivity extends FragmentActivity implements
 	private static final String TAG_SLIDING_OPEN = "sliding";
 
 	private SlidingLayer mSlidingLayer;
-	private InfoFragment mInfoFragment;
-	private DbServiceFragment mDbServiceFragment;
-	private RecordsServiceFragment mRecordsServiceFragment;
-	private InternetServiceFragment mInternetServiceFragment;
 	private RelativeLayout rtlLayout1, rtlLayout2, rtlLayout3,
 			rtlLayout4;
 	private LinearLayout lnlSelected2, lnlSelected1, lnlSelected3,
@@ -39,9 +33,6 @@ public class ServicesActivity extends FragmentActivity implements
 		// get views references
 		bindViews();
 
-		// set fragments
-		addFragments();
-
 		// inflate correct layout with selection
 		selectMenu(arg0 == null ? itemSelected : arg0.getInt(TAG_FRAGMENT));
 
@@ -49,24 +40,6 @@ public class ServicesActivity extends FragmentActivity implements
 		isOpen = (arg0 != null && arg0.getBoolean(TAG_SLIDING_OPEN));
 		Log.d(TAG, "onCreate: " + isOpen);
 
-	}
-
-	private void addFragments() {
-		FragmentManager fragmentManager = getSupportFragmentManager();
-		FragmentTransaction fragmentTransaction = fragmentManager
-				.beginTransaction();
-		mDbServiceFragment = new DbServiceFragment();
-		fragmentTransaction.add(R.id.fragment_db, mDbServiceFragment);
-
-		mInternetServiceFragment = new InternetServiceFragment();
-		fragmentTransaction.add(R.id.fragment_internet, mInternetServiceFragment);
-		
-		mInfoFragment = new InfoFragment();
-		fragmentTransaction.add(R.id.fragment_info, mInfoFragment);
-		
-//		mRecordsServiceFragment = new RecordsServiceFragment();
-//		fragmentTransaction.add(R.id.fragment_records, mRecordsServiceFragment);
-		fragmentTransaction.commit();
 	}
 
 	private void selectMenu(int item) {
@@ -139,15 +112,22 @@ public class ServicesActivity extends FragmentActivity implements
 	}
 
 	private void changeView(int id) {
-		// LayoutInflater inflater = (LayoutInflater) getApplicationContext()
-		// .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		// LayoutParams params = rlvContent.getLayoutParams();
-		// View view = inflater.inflate(id, null);
-		//
-		// view.setLayoutParams(params);
-		// rlvContent.removeAllViews();
-		// rlvContent.addView(view);
-
+		Fragment fragment;
+		if(id == R.layout.fragment_db_use) {
+			fragment = new DbServiceFragment();
+			Log.d(TAG, "db use");
+		} else if(id == R.layout.fragment_info) {
+			fragment = new InfoFragment();
+			Log.d(TAG, "info");
+		} else if(id == R.layout.fragment_internet){ 
+			fragment = new InternetServiceFragment();
+			Log.d(TAG, "internet");
+		} else {
+			fragment = new RecordsServiceFragment();
+			Log.d(TAG, "records");
+		}
+		
+		getFragmentManager().beginTransaction().replace(R.id.rlvContent, fragment).commit();
 		itemSelected = id;
 	}
 
@@ -159,10 +139,6 @@ public class ServicesActivity extends FragmentActivity implements
 			lnlSelected2.setVisibility(View.INVISIBLE);
 			lnlSelected3.setVisibility(View.INVISIBLE);
 			lnlSelected4.setVisibility(View.INVISIBLE);
-//			mRecordsServiceFragment.setVisibility(View.INVISIBLE);
-			mInternetServiceFragment.setVisibility(View.INVISIBLE);
-			mInfoFragment.setVisibility(View.INVISIBLE);
-			mDbServiceFragment.setVisibility(View.VISIBLE);
 			changeView(R.layout.fragment_db_use);
 			mSlidingLayer.closeLayer(true);
 			break;
@@ -171,10 +147,6 @@ public class ServicesActivity extends FragmentActivity implements
 			lnlSelected1.setVisibility(View.INVISIBLE);
 			lnlSelected3.setVisibility(View.INVISIBLE);
 			lnlSelected4.setVisibility(View.INVISIBLE);
-//			mRecordsServiceFragment.setVisibility(View.GONE);
-			mInternetServiceFragment.setVisibility(View.VISIBLE);
-			mInfoFragment.setVisibility(View.GONE);
-			mDbServiceFragment.setVisibility(View.GONE);
 			changeView(R.layout.fragment_internet);
 			mSlidingLayer.closeLayer(true);
 			break;
@@ -183,10 +155,6 @@ public class ServicesActivity extends FragmentActivity implements
 			lnlSelected3.setVisibility(View.VISIBLE);
 			lnlSelected2.setVisibility(View.INVISIBLE);
 			lnlSelected1.setVisibility(View.INVISIBLE);
-//			mRecordsServiceFragment.setVisibility(View.VISIBLE);
-			mInternetServiceFragment.setVisibility(View.GONE);
-			mInfoFragment.setVisibility(View.GONE);
-			mDbServiceFragment.setVisibility(View.GONE);
 			changeView(R.layout.fragment_records);
 			mSlidingLayer.closeLayer(true);
 			break;
@@ -195,10 +163,6 @@ public class ServicesActivity extends FragmentActivity implements
 			lnlSelected4.setVisibility(View.VISIBLE);
 			lnlSelected2.setVisibility(View.INVISIBLE);
 			lnlSelected1.setVisibility(View.INVISIBLE);
-//			mRecordsServiceFragment.setVisibility(View.GONE);
-			mInternetServiceFragment.setVisibility(View.GONE);
-			mInfoFragment.setVisibility(View.VISIBLE);
-			mDbServiceFragment.setVisibility(View.GONE);
 			changeView(R.layout.fragment_info);
 			mSlidingLayer.closeLayer(true);
 			break;

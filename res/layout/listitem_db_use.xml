@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_default_normal" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/txvInternalMemoryUsed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="used memory"
+                    android:textColor="@color/font"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/txvInternalMemoryTotal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="total memory"
+                    android:textColor="@color/font"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/txvInternalMemoryPercent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="percent memory"
+                    android:textColor="@color/font"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/txvExternalMemoryUsed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="used memory"
+                    android:textColor="@color/font"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/txvExternalMemoryTotal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="total memory"
+                    android:textColor="@color/font"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/txvExternalMemoryPercent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="percent memory"
+                    android:textColor="@color/font"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/txtBatteryPercent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Battery Percent"
+                    android:textColor="@color/font"
+                    android:textSize="12sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/stat_sys_battery_charge_anim4" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="0dp"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/txtLatitude"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/font"
+                        android:textSize="12sp"
+                        android:layout_height="wrap_content"
+                        android:text="lat" />
+
+                    <TextView
+                        android:id="@+id/txtLongitude"
+                        android:layout_width="0dp"
+                        android:textSize="12sp"
+                        android:layout_weight="1"
+                        android:textColor="@color/font"
+                        android:layout_height="wrap_content"
+                        android:text="lon" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="0dp"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/txtLongitude"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/font"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:text="lon" />
+
+                    <TextView
+                        android:id="@+id/txtAccuracy"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="12sp"
+                        android:textColor="@color/font"
+                        android:text="inprasdfasds" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btnMore"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/ic_info" />
+
+</RelativeLayout>

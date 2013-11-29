@@ -1,6 +1,6 @@
 package com.example.pruebakeneth;
 
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.util.Log;
 import android.view.View;
 

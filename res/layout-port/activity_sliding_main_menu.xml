@@ -27,32 +27,7 @@
             android:id="@+id/rlvContent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="48dp" >
-
-            <fragment
-                android:id="@+id/fragment_db"
-                android:name="com.example.pruebakeneth.DbServiceFragment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <fragment
-                android:id="@+id/fragment_info"
-                android:name="com.example.pruebakeneth.InfoFragment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <fragment
-                android:id="@+id/fragment_internet"
-                android:name="com.example.pruebakeneth.InternetServiceFragment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <fragment
-                android:id="@+id/fragment_records"
-                android:name="com.example.pruebakeneth.RecordsServiceFragment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </RelativeLayout>
+            android:paddingTop="48dp" />
     </RelativeLayout>
 
     <com.slidinglayer.SlidingLayer

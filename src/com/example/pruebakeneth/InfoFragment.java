@@ -10,7 +10,7 @@ public class InfoFragment extends CustomFragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		this.rootView = inflater.inflate(R.layout.fragment_db_use, container, false);
+		this.rootView = inflater.inflate(R.layout.fragment_info, container, false);
 		return rootView;
 	}
 
