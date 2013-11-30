@@ -1,17 +1,14 @@
 package com.example.pruebakeneth;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import android.app.Dialog;
 import android.app.ListFragment;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup.LayoutParams;
-import android.view.Window;
-import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -51,7 +48,7 @@ public class DbServiceFragment extends ListFragment implements OnClickListener {
 
 		// db
 		mRecordDBHelper = ((TheApplication) getActivity().getApplication())
-				.getDbManager().OpenOrCreateRecordInstance("69");
+				.getCurrentClientDataBase();
 
 		list = mRecordDBHelper.selectAll();
 		// for (int i = 0; i < 6; i++) {
@@ -242,7 +239,7 @@ public class DbServiceFragment extends ListFragment implements OnClickListener {
 	}
 
 	private void save() {
-		Record mRecord = new Record();
+		Record mRecord = new Record(Calendar.getInstance().get(Calendar.MILLISECOND));
 		// internal memory
 		Log.d(TAG, "7");
 		mRecord.setmInMemTotal(DeviseMemoryUtils.getTotalInternalMemorySize());

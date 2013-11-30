@@ -10,8 +10,8 @@ import com.example.pruebakeneth.objects.Record;
 
 public class RecordDBHelper extends DBHelperBase<Record, Integer> {
 
-	private static final int VERSION = 1;
-	private static final String TABLE_NAME = "Record";
+	private static final int VERSION = 2;
+	private static final String TABLE_NAME = "DBPrueba";
 	private final static String ID = "mRecord_id";
 
 	public RecordDBHelper(Context context, String user) {

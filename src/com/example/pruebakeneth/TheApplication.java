@@ -36,7 +36,7 @@ public class TheApplication extends Application {
 		this.mLocationUtils = mLocationUtils;
 	}
 
-	public DataBaseManager getDbManager() {
+	private DataBaseManager getDbManager() {
 		if (mDbManager == null)
 			mDbManager = DataBaseManager.getInstance(this);
 		return mDbManager;

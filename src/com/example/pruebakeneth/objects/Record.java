@@ -1,5 +1,7 @@
 package com.example.pruebakeneth.objects;
 
+import com.example.pruebakeneth.helpers.DateTimeHelper;
+
 public class Record {
 
 	public final static String Tag_mId = "mId";
@@ -16,22 +18,46 @@ public class Record {
 	public final static String Tag_mBatteryCharging = "mBatteryCharging";
 
 	private String mInMemAvailable, mInMemTotal, mExMemAvailable, mExMemTotal,
-			mBatChargeStatus, mBatteryChargeType;
+			mBatChargeStatus, mBatteryChargeType, mModified_date;
 	private double mLat, mLon, mAlt;
 	private float mAccuracy;
 	private boolean mBatteryCharging;
-	private int mId;
+	private long mClient_id;
+	private int isNew=0;
 
 	public Record() {
 		mInMemAvailable = mInMemTotal = mExMemAvailable = mExMemTotal = mBatChargeStatus = mBatteryChargeType = "";
 	}
+
+	public Record(long datetime) {
+		mInMemAvailable = mInMemTotal = mExMemAvailable = mExMemTotal = mBatChargeStatus = mBatteryChargeType = "";
+		this.mClient_id = datetime;
+		this.mModified_date = (DateTimeHelper.toString(datetime));
+		this.setNew(1);
+	}
 	
-	public int getmId() {
-		return mId;
+	private void setNew (int i) {
+		isNew = i;
+	}
+	
+	public int isNew() {
+		return this.isNew;
 	}
 
-	public void setmId(int mId) {
-		this.mId = mId;
+	public String getmModified_date() {
+		return mModified_date;
+	}
+
+	public void setmModified_date(String mModified_date) {
+		this.mModified_date = mModified_date;
+	}
+
+	public long getmClient_id() {
+		return mClient_id;
+	}
+
+	public void setmClient_id(long mClient_id) {
+		this.mClient_id = mClient_id;
 	}
 
 	public String getmBatteryChargeType() {
