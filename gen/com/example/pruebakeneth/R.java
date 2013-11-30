@@ -70,6 +70,7 @@ containing a value of this type.
         public static final int stickTo=0x7f010005;
     }
     public static final class color {
+        public static final int back_dialog=0x7f050006;
         public static final int black=0x7f050005;
         public static final int dark_blue=0x7f050001;
         public static final int font=0x7f050004;
@@ -119,13 +120,13 @@ containing a value of this type.
         public static final int txt_back=0x7f02001b;
     }
     public static final class id {
-        public static final int action_settings=0x7f040028;
+        public static final int action_settings=0x7f04002d;
         public static final int auto=0x7f040000;
         public static final int bottom=0x7f040005;
         public static final int btn=0x7f040007;
-        public static final int btnMore=0x7f040027;
-        public static final int btnPri=0x7f04001c;
-        public static final int btnSave=0x7f04001b;
+        public static final int btnMore=0x7f04002c;
+        public static final int btnPri=0x7f04001e;
+        public static final int btnSave=0x7f04001d;
         public static final int imvItemIcon1=0x7f04000b;
         public static final int imvItemIcon2=0x7f04000f;
         public static final int imvItemIcon3=0x7f040013;
@@ -145,16 +146,21 @@ containing a value of this type.
         public static final int rtlLayout4=0x7f040016;
         public static final int slidingLayer1=0x7f040009;
         public static final int top=0x7f040004;
-        public static final int txtAccuracy=0x7f040026;
-        public static final int txtBatteryPercent=0x7f040023;
-        public static final int txtLatitude=0x7f040024;
-        public static final int txtLongitude=0x7f040025;
-        public static final int txvExternalMemoryPercent=0x7f040022;
-        public static final int txvExternalMemoryTotal=0x7f040021;
-        public static final int txvExternalMemoryUsed=0x7f040020;
-        public static final int txvInternalMemoryPercent=0x7f04001f;
-        public static final int txvInternalMemoryTotal=0x7f04001e;
-        public static final int txvInternalMemoryUsed=0x7f04001d;
+        public static final int txtAccuracy=0x7f04002b;
+        public static final int txtAltitude=0x7f04002a;
+        public static final int txtBatteryCharge=0x7f040026;
+        public static final int txtBatteryChargeStatus=0x7f040025;
+        public static final int txtBatteryMode=0x7f040027;
+        public static final int txtLatitude=0x7f040028;
+        public static final int txtLongitude=0x7f040029;
+        public static final int txtNo=0x7f04001c;
+        public static final int txtYes=0x7f04001b;
+        public static final int txvExternalMemoryAvailable=0x7f040022;
+        public static final int txvExternalMemoryPercent=0x7f040024;
+        public static final int txvExternalMemoryTotal=0x7f040023;
+        public static final int txvInternalMemoryAvailable=0x7f04001f;
+        public static final int txvInternalMemoryPercent=0x7f040021;
+        public static final int txvInternalMemoryTotal=0x7f040020;
         public static final int txvItemDesc=0x7f04001a;
         public static final int txvItemDesc1=0x7f04000c;
         public static final int txvItemDesc2=0x7f040010;
@@ -164,11 +170,12 @@ containing a value of this type.
     public static final class layout {
         public static final int activity_main=0x7f030000;
         public static final int activity_sliding_main_menu=0x7f030001;
-        public static final int fragment_db_use=0x7f030002;
-        public static final int fragment_info=0x7f030003;
-        public static final int fragment_internet=0x7f030004;
-        public static final int fragment_records=0x7f030005;
-        public static final int listitem_db_use=0x7f030006;
+        public static final int dialog_multiple_buttons=0x7f030002;
+        public static final int fragment_db_use=0x7f030003;
+        public static final int fragment_info=0x7f030004;
+        public static final int fragment_internet=0x7f030005;
+        public static final int fragment_records=0x7f030006;
+        public static final int listitem_db_use=0x7f030007;
     }
     public static final class menu {
         public static final int main=0x7f090000;
@@ -176,6 +183,7 @@ containing a value of this type.
     public static final class string {
         public static final int action_settings=0x7f070001;
         public static final int app_name=0x7f070000;
+        public static final int crash_toast_text=0x7f070005;
         public static final int hello=0x7f070003;
         public static final int hello_world=0x7f070002;
         public static final int services_label=0x7f070004;

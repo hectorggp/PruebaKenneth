@@ -7,7 +7,7 @@ import android.os.Handler;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 
-import com.example.pruebakeneth.utils.Constants;
+import com.example.pruebakeneth.global.Constants;
 
 public class MainActivity extends Activity {
 

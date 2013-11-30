@@ -18,11 +18,10 @@ public class ServicesActivity extends FragmentActivity implements
 	private static final String TAG_SLIDING_OPEN = "sliding";
 
 	private SlidingLayer mSlidingLayer;
-	private RelativeLayout rtlLayout1, rtlLayout2, rtlLayout3,
-			rtlLayout4;
+	private RelativeLayout rtlLayout1, rtlLayout2, rtlLayout3, rtlLayout4;
 	private LinearLayout lnlSelected2, lnlSelected1, lnlSelected3,
 			lnlSelected4;
-	private int itemSelected = R.layout.fragment_db_use;
+	private int itemSelected;
 	private boolean isOpen;
 
 	@Override
@@ -34,7 +33,12 @@ public class ServicesActivity extends FragmentActivity implements
 		bindViews();
 
 		// inflate correct layout with selection
-		selectMenu(arg0 == null ? itemSelected : arg0.getInt(TAG_FRAGMENT));
+		if (arg0 == null) {
+			selectMenu(R.layout.fragment_db_use);
+		} else {
+			itemSelected = arg0.getInt(TAG_FRAGMENT);
+			selectMenu(itemSelected);
+		}
 
 		// sliding menu is open
 		isOpen = (arg0 != null && arg0.getBoolean(TAG_SLIDING_OPEN));
@@ -83,7 +87,7 @@ public class ServicesActivity extends FragmentActivity implements
 
 	private void bindViews() {
 		mSlidingLayer = (SlidingLayer) findViewById(R.id.slidingLayer1);
-//		rlvContent = (RelativeLayout) findViewById(R.id.rlvContent);
+		// rlvContent = (RelativeLayout) findViewById(R.id.rlvContent);
 		rtlLayout1 = (RelativeLayout) findViewById(R.id.rtlLayout1);
 		rtlLayout2 = (RelativeLayout) findViewById(R.id.rtlLayout2);
 		rtlLayout3 = (RelativeLayout) findViewById(R.id.rtlLayout3);
@@ -112,23 +116,27 @@ public class ServicesActivity extends FragmentActivity implements
 	}
 
 	private void changeView(int id) {
-		Fragment fragment;
-		if(id == R.layout.fragment_db_use) {
-			fragment = new DbServiceFragment();
-			Log.d(TAG, "db use");
-		} else if(id == R.layout.fragment_info) {
-			fragment = new InfoFragment();
-			Log.d(TAG, "info");
-		} else if(id == R.layout.fragment_internet){ 
-			fragment = new InternetServiceFragment();
-			Log.d(TAG, "internet");
-		} else {
-			fragment = new RecordsServiceFragment();
-			Log.d(TAG, "records");
+		if (itemSelected != id) {
+			Fragment fragment;
+			if (id == R.layout.fragment_db_use) {
+				fragment = new DbServiceFragment();
+				Log.d(TAG, "db use");
+			} else if (id == R.layout.fragment_info) {
+				fragment = new InfoFragment();
+				Log.d(TAG, "info");
+			} else if (id == R.layout.fragment_internet) {
+				fragment = new InternetServiceFragment();
+				Log.d(TAG, "internet");
+			} else {
+				fragment = new RecordsServiceFragment();
+				Log.d(TAG, "records");
+			}
+			getFragmentManager().beginTransaction()
+					.replace(R.id.rlvContent, fragment).commit();
 		}
-		
-		getFragmentManager().beginTransaction().replace(R.id.rlvContent, fragment).commit();
+		Log.i(TAG, itemSelected + " - " + id);
 		itemSelected = id;
+		Log.i(TAG, itemSelected + " - " + id);
 	}
 
 	@Override

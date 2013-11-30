@@ -7,4 +7,7 @@
     <string name="hello">Hello World, Game! Hello World, Game! Hello World, Game! Hello World, Game! Hello World, Game! Hello World, Game! Hello World, Game! Hello World, Game! Hello World, Game! Hello World, Game! Hello World, Game! Hello World, Game! Hello World, Game! Hello World, Game! Hello World, Game! Hello World, Game! Hello World, Game! Hello World, Game! Hello World, Game! Hello World, Game! Hello World, Game! Hello World, Game! Hello World, Game! Hello World, Game! Hello World, Game! Hello World, Game! Hello World, Game! Hello World, Game! Hello World, Game! Hello World, Game!</string>
 
     <string name="services_label">Services</string>
+    
+    <string name="crash_toast_text">La aplicacion se detuvo. Se reportó</string>
+        
 </resources>

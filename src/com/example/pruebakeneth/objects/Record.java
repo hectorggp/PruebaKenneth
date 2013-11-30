@@ -3,12 +3,33 @@ package com.example.pruebakeneth.objects;
 public class Record {
 
 	public Record() {
-		mInMemAvailable = mInMemTotal = mExMemAvailable = mExMemTotal = mBatPercent = "";
+		mInMemAvailable = mInMemTotal = mExMemAvailable = mExMemTotal = mBatChargeStatus = "";
 	}
 
 	private String mInMemAvailable, mInMemTotal, mExMemAvailable, mExMemTotal,
-			mBatPercent;
-	private int mLat, mLon, mAlt;
+			mBatChargeStatus, mBatteryChargeType;
+	
+	private double mLat, mLon, mAlt;
+	
+	private float mAccuracy;
+	
+	private boolean mBatteryCharging;
+
+	public String getmBatteryChargeType() {
+		return mBatteryChargeType;
+	}
+
+	public void setmBatteryChargeType(String mBatteryChargeType) {
+		this.mBatteryChargeType = mBatteryChargeType;
+	}
+
+	public boolean ismBatteryCharging() {
+		return mBatteryCharging;
+	}
+
+	public void setmBatteryCharging(boolean mBatteryCharging) {
+		this.mBatteryCharging = mBatteryCharging;
+	}
 
 	public String getmInMemAvailable() {
 		return mInMemAvailable;
@@ -43,35 +64,57 @@ public class Record {
 	}
 
 	public String getmBatPercent() {
-		return mBatPercent;
+		return mBatChargeStatus;
 	}
 
-	public void setmBatPercent(String mBatPercent) {
-		this.mBatPercent = mBatPercent;
+	public void setmBatPercent(String mBatChargeStatus) {
+		this.mBatChargeStatus = mBatChargeStatus;
 	}
 
-	public int getmLat() {
+	public double getmLat() {
 		return mLat;
 	}
-
-	public void setmLat(int mLat) {
-		this.mLat = mLat;
+	
+	public double getmLat(int num) {
+		double ret = ((double)Math.round(mLat * num)) / num;
+		return ret;
 	}
 
-	public int getmLon() {
+	public void setmLat(double d) {
+		this.mLat = d;
+	}
+
+	public double getmLon() {
 		return mLon;
 	}
-
-	public void setmLon(int mLon) {
-		this.mLon = mLon;
+	
+	public double getmLon(int num) {
+		double ret = ((double)Math.round(mLon * num)) / num;
+		return ret;
 	}
 
-	public int getmAlt() {
+	public void setmLon(double d) {
+		this.mLon = d;
+	}
+
+	public double getmAlt() {
 		return mAlt;
 	}
-
-	public void setmAlt(int mAlt) {
-		this.mAlt = mAlt;
+	
+	public double getmAlt(int num) {
+		double ret = ((double)Math.round(mAlt * num)) / num;
+		return ret;
 	}
 
+	public void setmAlt(double d) {
+		this.mAlt = d;
+	}
+
+	public void setmAccuracy(float f) {
+		this.mAccuracy = f;
+	}
+
+	public float getmAccuracy() {
+		return mAccuracy;
+	}
 }

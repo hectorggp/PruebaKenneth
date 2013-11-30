@@ -1,4 +1,4 @@
-package com.example.pruebakeneth.utils;
+package com.example.pruebakeneth.global;
 
 public class Constants {
 	

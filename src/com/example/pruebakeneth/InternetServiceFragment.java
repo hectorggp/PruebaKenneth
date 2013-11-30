@@ -9,8 +9,8 @@ public class InternetServiceFragment extends CustomFragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		rootView = inflater.inflate(R.layout.fragment_internet, container, false);
+		rootView = inflater.inflate(R.layout.fragment_internet, container,
+				false);
 		return rootView;
 	}
-
 }

@@ -6,4 +6,5 @@
     <color name="transparent">#FFFFFFFF</color>
     <color name="font">#31312F</color>
     <color name="black">#000000</color>
+    <color name="back_dialog">#32000000</color>
 </resources>
