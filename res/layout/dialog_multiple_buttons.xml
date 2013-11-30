@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@color/back_dialog"
     android:gravity="center"
     android:orientation="vertical"
     android:padding="15dp" >
@@ -13,7 +13,7 @@
         android:background="@drawable/custom_button"
         android:padding="15dp"
         android:clickable="false"
-        android:text="Quieres eliminar esto?"
+        android:text="¿Seguro que quieres eliminar esto?"
         android:textColor="@color/font" />
 
     <LinearLayout

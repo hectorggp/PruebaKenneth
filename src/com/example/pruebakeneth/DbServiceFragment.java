@@ -20,6 +20,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.pruebakeneth.db.RecordDBHelper;
 import com.example.pruebakeneth.global.SharedValues;
 import com.example.pruebakeneth.objects.Record;
 import com.example.pruebakeneth.utils.BatteryChargeStateUtils;
@@ -33,6 +34,7 @@ public class DbServiceFragment extends ListFragment implements OnClickListener {
 
 	private ArrayList<Record> list;
 	private View mView;
+	private RecordDBHelper mRecordDBHelper;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,7 +49,11 @@ public class DbServiceFragment extends ListFragment implements OnClickListener {
 
 		forViews();
 
-		list = new ArrayList<Record>();
+		// db
+		mRecordDBHelper = ((TheApplication) getActivity().getApplication())
+				.getDbManager().OpenOrCreateRecordInstance("69");
+
+		list = mRecordDBHelper.selectAll();
 		// for (int i = 0; i < 6; i++) {
 		// list.add(new Record());
 		// }
@@ -57,6 +63,7 @@ public class DbServiceFragment extends ListFragment implements OnClickListener {
 
 		if (savedInstanceState == null)
 			initLocationService();
+
 	}
 
 	private void initLocationService() {
@@ -185,15 +192,8 @@ public class DbServiceFragment extends ListFragment implements OnClickListener {
 
 				@Override
 				public void onClick(View v) {
-					final Dialog mDialog = new Dialog(getContext());
-					
-//					Window window = mDialog.getWindow();
-//					WindowManager.LayoutParams wlp = window.getAttributes();
-//
-//					wlp.flags &= ~WindowManager.LayoutParams.FLAG_DIM_BEHIND;
-//					wlp.height = LayoutParams.MATCH_PARENT;
-//					wlp.width = LayoutParams.MATCH_PARENT;
-//					window.setAttributes(wlp);
+					final Dialog mDialog = new Dialog(getContext(),
+							R.style.CustomDialogTheme);
 
 					mDialog.setCancelable(false);
 					mDialog.setContentView(R.layout.dialog_multiple_buttons);
@@ -223,8 +223,9 @@ public class DbServiceFragment extends ListFragment implements OnClickListener {
 	}
 
 	private void delete(int position) {
-		Toast.makeText(getActivity(), "delete: " + position, Toast.LENGTH_SHORT)
-				.show();
+		list.remove(position);
+
+		notifyDataSetChanged();
 	}
 
 	@Override
@@ -293,7 +294,12 @@ public class DbServiceFragment extends ListFragment implements OnClickListener {
 		// if (mAdapter == getListAdapter())
 		// Log.wtf(TAG, "Equal instances!");
 
-		((ListDbAdapter) getListAdapter()).notifyDataSetChanged();
+		
+		if (mRecordDBHelper.insert(mRecord))
+			Log.d(TAG, "can be inserted");
+		else
+			Log.d(TAG, "can not be inserted");
+		notifyDataSetChanged();
 	}
 
 	private String percent(String available, String total) {
@@ -309,6 +315,10 @@ public class DbServiceFragment extends ListFragment implements OnClickListener {
 			e.printStackTrace();
 		}
 		return ret;
+	}
+
+	private void notifyDataSetChanged() {
+		((ListDbAdapter) getListAdapter()).notifyDataSetChanged();
 	}
 
 }
