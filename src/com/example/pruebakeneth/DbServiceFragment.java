@@ -5,6 +5,7 @@ import java.util.Calendar;
 
 import android.app.Dialog;
 import android.app.ListFragment;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -28,8 +29,10 @@ import com.example.pruebakeneth.utils.LocationUtils;
 public class DbServiceFragment extends ListFragment implements OnClickListener {
 
 	public static final String TAG = "DbServiceFragment";
+	private static final String INSTANCE_LIST = "LIST";
+	private static final String DELETE_RECORD = "delete";
 
-	private ArrayList<Record> list;
+	private ArrayList<Record> mList;
 	private View mView;
 	private RecordDBHelper mRecordDBHelper;
 
@@ -50,17 +53,20 @@ public class DbServiceFragment extends ListFragment implements OnClickListener {
 		mRecordDBHelper = ((TheApplication) getActivity().getApplication())
 				.getCurrentClientDataBase();
 
-		list = mRecordDBHelper.selectAll();
-		// for (int i = 0; i < 6; i++) {
-		// list.add(new Record());
-		// }
-
-		// mAdapter = new ListDbAdapter();
-		setListAdapter(new ListDbAdapter());
+		new onBack().execute(INSTANCE_LIST);
 
 		if (savedInstanceState == null)
 			initLocationService();
 
+	}
+
+	private void onListInstance() {
+		setListAdapter(new ListDbAdapter());
+
+		// for examples:
+		// for (int i = 0; i < 6; i++) {
+		// list.add(new Record());
+		// }
 	}
 
 	private void initLocationService() {
@@ -118,7 +124,7 @@ public class DbServiceFragment extends ListFragment implements OnClickListener {
 	private class ListDbAdapter extends ArrayAdapter<Record> {
 
 		public ListDbAdapter() {
-			super(getActivity(), R.layout.listitem_db_use, list);
+			super(getActivity(), R.layout.listitem_db_use, mList);
 		}
 
 		@Override
@@ -162,7 +168,7 @@ public class DbServiceFragment extends ListFragment implements OnClickListener {
 				view = convertView;
 			}
 			PlaceHolder mHolder = (PlaceHolder) view.getTag();
-			Record mRecord = list.get(position);
+			Record mRecord = mList.get(position);
 			mHolder.txvInternalMemoryPercent.setText(percent(
 					mRecord.getmInMemAvailable(), mRecord.getmInMemTotal()));
 			mHolder.txvInternalMemoryAvailable.setText(mRecord
@@ -175,8 +181,8 @@ public class DbServiceFragment extends ListFragment implements OnClickListener {
 			mHolder.txvExternalMemoryTotal.setText(mRecord.getmExMemTotal());
 			mHolder.txtBatteryChargeStatus.setText(mRecord.getmBatPercent());
 			mHolder.txtBatteryCharge
-					.setText(mRecord.ismBatteryCharging() ? "Cargando"
-							: "No conectado");
+					.setText(mRecord.ismBatteryCharging() ? "Cargado"
+							: "No cargado");
 			mHolder.txtBatteryMode.setText(mRecord.getmBatteryChargeType());
 			mHolder.txtLatitude.setText(mRecord.getmLat(1000) + "");
 			mHolder.txtLongitude.setText(mRecord.getmLon(1000) + "");
@@ -220,9 +226,8 @@ public class DbServiceFragment extends ListFragment implements OnClickListener {
 	}
 
 	private void delete(int position) {
-		list.remove(position);
-
-		notifyDataSetChanged();
+		String[] params = { DELETE_RECORD, position + "" };
+		new onBack().execute(params);
 	}
 
 	@Override
@@ -230,7 +235,7 @@ public class DbServiceFragment extends ListFragment implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.btnSave:
 			// Toast.makeText(getActivity(), "Save!", Toast.LENGTH_LONG).show();
-			Log.d(TAG, "items: " + list.size());
+			Log.d(TAG, "items: " + mList.size());
 			save();
 			break;
 		default:
@@ -239,7 +244,8 @@ public class DbServiceFragment extends ListFragment implements OnClickListener {
 	}
 
 	private void save() {
-		Record mRecord = new Record(Calendar.getInstance().get(Calendar.MILLISECOND));
+		Record mRecord = new Record(Calendar.getInstance().get(
+				Calendar.MILLISECOND));
 		// internal memory
 		Log.d(TAG, "7");
 		mRecord.setmInMemTotal(DeviseMemoryUtils.getTotalInternalMemorySize());
@@ -286,12 +292,11 @@ public class DbServiceFragment extends ListFragment implements OnClickListener {
 					Toast.LENGTH_LONG).show();
 		}
 
-		list.add(mRecord);
+		mList.add(mRecord);
 
 		// if (mAdapter == getListAdapter())
 		// Log.wtf(TAG, "Equal instances!");
 
-		
 		if (mRecordDBHelper.insert(mRecord))
 			Log.d(TAG, "can be inserted");
 		else
@@ -299,12 +304,24 @@ public class DbServiceFragment extends ListFragment implements OnClickListener {
 		notifyDataSetChanged();
 	}
 
-	private String percent(String available, String total) {
+	private String percent(String ava, String tot) {
 		String ret = null;
 		try {
-			available = available.toLowerCase().replace("mb", "")
-					.replace(",", ".");
-			total = total.toLowerCase().replace("mb", "").replace(",", ".");
+			double available = Double.valueOf(ava.replace(",", "")
+					.replace("MB", "").replace("KB", "KB"));
+			double total = Double.valueOf(tot.replace(",", "")
+					.replace("MB", "").replace("KB", "KB"));
+			if (ava.contains("MB") && tot.contains("MB") || ava.contains("KB")
+					&& tot.contains("KB")) {
+				// ok!
+			} else { // to KB
+				if (ava.contains("MB"))
+					available *= 1024;
+				// else :P
+				if (tot.contains("MB"))
+					total *= 1024;
+			}
+			Log.d(TAG, "available: " + available + " - total: " + total);
 			Double perc = Double.valueOf(available) / Double.valueOf(total);
 			perc = ((double) Math.round(perc * 1000)) / 10;
 			ret = perc + "%";
@@ -316,6 +333,38 @@ public class DbServiceFragment extends ListFragment implements OnClickListener {
 
 	private void notifyDataSetChanged() {
 		((ListDbAdapter) getListAdapter()).notifyDataSetChanged();
+	}
+
+	private class onBack extends AsyncTask<String, Void, String> {
+
+		@Override
+		protected String doInBackground(String... params) {
+			if (params[0].equals(INSTANCE_LIST)) {
+				Log.d(TAG, "empezó");
+				mList = mRecordDBHelper.selectAll();
+				Log.d(TAG, "terminó");
+				return INSTANCE_LIST;
+			} else if (params[0].equals(DELETE_RECORD)) {
+				int position = Integer.valueOf(params[1]);
+				Record toDelete = mList.get(position);
+				if (mRecordDBHelper.delete(toDelete.getmRecord_id()))
+					mList.remove(position);
+				return DELETE_RECORD;
+			}
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(String result) {
+			if (result == INSTANCE_LIST) {
+				Log.d(TAG, "is INSTANCE_LIST");
+				onListInstance();
+			} else if (result == DELETE_RECORD) {
+				Log.d(TAG, "is DELETE_RECORD");
+				notifyDataSetChanged();
+			}
+
+		}
 	}
 
 }

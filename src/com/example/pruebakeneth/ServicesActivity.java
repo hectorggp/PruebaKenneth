@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.slidinglayer.SlidingLayer;
 
@@ -32,14 +33,24 @@ public class ServicesActivity extends FragmentActivity implements
 		// get views references
 		bindViews();
 
-		// inflate correct layout with selection
-		if (arg0 == null) {
-			selectMenu(R.layout.fragment_db_use);
+		if (getIntent().getStringExtra(TheApplication.BOOT_UP_DEVICE) == null) {
+			// inflate correct layout with selection
+			if (arg0 == null) {
+				selectMenu(R.layout.fragment_db_use);
+			} else {
+				itemSelected = arg0.getInt(TAG_FRAGMENT);
+				selectMenu(itemSelected);
+			}
 		} else {
-			itemSelected = arg0.getInt(TAG_FRAGMENT);
-			selectMenu(itemSelected);
+			String tag = getIntent().getExtras().getString(
+					TheApplication.BOOT_UP_DEVICE);
+			selectMenu(R.layout.fragment_records);
+			Toast.makeText(getApplicationContext(),
+					"Se acaba de arrancar el sistema", Toast.LENGTH_LONG)
+					.show();
+			Log.d(TAG, tag);
+			// guardar marca
 		}
-
 		// sliding menu is open
 		isOpen = (arg0 != null && arg0.getBoolean(TAG_SLIDING_OPEN));
 		Log.d(TAG, "onCreate: " + isOpen);

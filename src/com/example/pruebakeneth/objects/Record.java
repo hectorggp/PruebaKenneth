@@ -22,8 +22,17 @@ public class Record {
 	private double mLat, mLon, mAlt;
 	private float mAccuracy;
 	private boolean mBatteryCharging;
-	private long mClient_id;
-	private int isNew=0;
+	private long mRecord_id;
+
+	public long getmRecord_id() {
+		return mRecord_id;
+	}
+
+	public void setmRecord_id(long mRecord_id) {
+		this.mRecord_id = mRecord_id;
+	}
+
+	private int isNew = 0;
 
 	public Record() {
 		mInMemAvailable = mInMemTotal = mExMemAvailable = mExMemTotal = mBatChargeStatus = mBatteryChargeType = "";
@@ -31,15 +40,15 @@ public class Record {
 
 	public Record(long datetime) {
 		mInMemAvailable = mInMemTotal = mExMemAvailable = mExMemTotal = mBatChargeStatus = mBatteryChargeType = "";
-		this.mClient_id = datetime;
+		this.mRecord_id = datetime;
 		this.mModified_date = (DateTimeHelper.toString(datetime));
 		this.setNew(1);
 	}
-	
-	private void setNew (int i) {
+
+	private void setNew(int i) {
 		isNew = i;
 	}
-	
+
 	public int isNew() {
 		return this.isNew;
 	}
@@ -53,11 +62,11 @@ public class Record {
 	}
 
 	public long getmClient_id() {
-		return mClient_id;
+		return mRecord_id;
 	}
 
 	public void setmClient_id(long mClient_id) {
-		this.mClient_id = mClient_id;
+		this.mRecord_id = mClient_id;
 	}
 
 	public String getmBatteryChargeType() {

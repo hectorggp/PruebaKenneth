@@ -8,9 +8,9 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.pruebakeneth.objects.Record;
 
-public class RecordDBHelper extends DBHelperBase<Record, Integer> {
+public class RecordDBHelper extends DBHelperBase<Record, Long> {
 
-	private static final int VERSION = 2;
+	private static final int VERSION = 3;
 	private static final String TABLE_NAME = "DBPrueba";
 	private final static String ID = "mRecord_id";
 
@@ -49,22 +49,22 @@ public class RecordDBHelper extends DBHelperBase<Record, Integer> {
 	}
 
 	@Override
-	public boolean delete(Integer key) {
+	public boolean delete(Long key) {
 		return delete(TABLE_NAME, ID, key);
 	}
 
 	@Override
-	public boolean update(Integer key, Record object) {
+	public boolean update(Long key, Record object) {
 		return update(TABLE_NAME, ID, key, object);
 	}
 
 	@Override
-	public boolean updateWS(Integer key, Record object) {
+	public boolean updateWS(Long key, Record object) {
 		return updateWS(TABLE_NAME, ID, key, object);
 	}
 
 	@Override
-	public Record select(Integer key) {
+	public Record select(Long key) {
 		return select(TABLE_NAME, ID, key);
 	}
 
@@ -82,17 +82,17 @@ public class RecordDBHelper extends DBHelperBase<Record, Integer> {
 	}
 
 	@Override
-	public boolean setModifiedDate(Integer key, String date) {
+	public boolean setModifiedDate(Long key, String date) {
 		return setModifiedDate(TABLE_NAME, ID, key, date);
 	}
 
 	@Override
-	public String getModifiedDate(Integer key) {
+	public String getModifiedDate(Long key) {
 		return getModifiedDate(TABLE_NAME, ID, key);
 	}
 
 	@Override
-	public boolean exists(Integer key) {
+	public boolean exists(Long key) {
 		return exists(TABLE_NAME, ID, key);
 	}
 

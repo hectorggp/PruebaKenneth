@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:background="@color/back_dialog"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="15dp" >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_button"
+        android:clickable="false"
+        android:padding="15dp"
+        android:text="Ingresa texto"
+        android:textColor="@color/font" />
+
+    <EditText
+        android:id="@+id/edtInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_button"
+        android:padding="15dp"
+        android:text="Si"
+        android:textColor="@color/font" />
+
+    <TextView
+        android:id="@+id/txtAceptar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_button"
+        android:padding="15dp"
+        android:clickable="true"
+        android:text="Aceptar"
+        android:textColor="@color/font" />
+
+</LinearLayout>
